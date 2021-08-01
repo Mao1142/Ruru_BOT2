@@ -1,0 +1,24 @@
+{
+    "TOKEN": "NzE3Mzg1MjUxOTAyNzE4MDUz.XtZjFA.aNHHOTwnILLMoNrbS_OGcbotd08",
+    "Test_Channel": "717384683184455692",
+    "DragonPort_Ch": "400329522890670083",
+    "MaoServer":"745188651519967337",
+    "PicSource": [
+        "yande",
+        "gelbooru",
+        "danbooru"
+    ],
+    "sankaku": "https://chan.sankakucomplex.com/post/show/",
+    "sankaku_max": "25619276",
+    "yande": "https://yande.re/post/show/",
+    "yande_max": "818408",
+    "gelbooru": "https://gelbooru.com/index.php?page=post&s=view&id=",
+    "gelbooru_max": "6283872",
+    "danbooru": "https://danbooru.donmai.us/posts/",
+    "danbooru_max": "4646321",
+    "time": "2100",
+    "Ruru_sleep" : "https://cdn.discordapp.com/attachments/745188651519967337/866523196181970994/866509771673436211.png",
+    "AdviceTable": "https://docs.google.com/spreadsheets/d/1aNxdHr9t4AWKQ7fsF0-qCIwYgghDyDoPuNZ13fdsW3w/edit?usp=sharing",
+    "konruru": "<:ko:866747083515101234><:nn:866747100343566387><:ru:866747111310360578><:ru:866747111310360578>",
+    "otsururu": "<:o_:866746981413421126><:tsu:866747038388453376><:ru:866747111310360578><:ru:866747111310360578>"
+}
