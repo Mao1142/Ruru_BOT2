@@ -5,12 +5,13 @@ import random
 import json
 from core.jsonctrl import jFile
 import requests
+from bs4 import BeautifulSoup
 
 class React(Cog_Extension):
 
     @commands.command()
     async def pic(self,ctx):
-	    await ctx.send(SelectUrl('PicSource'))
+	    await ctx.send(SelectUrl())
 
     @commands.command()
     async def san(self,ctx):
@@ -76,9 +77,15 @@ class React(Cog_Extension):
       
     @commands.command()
     async def test(self,ctx):
-      with open('json/chat.json','r',encoding='utf8') as f:
-        data = json.load(f)
-      print(data)
+      url = SelectUrl()
+      print(url)
+      resp = requests.get(url)  
+      #print(resp) #<Response [200]> 請求成功回200，請求失敗回404
+      #透過BeautiFul整理且用html.parser解析
+      soup = BeautifulSoup(resp.text, 'html.parser')
+      result = soup.find("section",id = "content")
+      picurl = result.select_one("a").get("href")
+      await ctx.send(picurl)
 
 
 #綜合
@@ -89,9 +96,9 @@ def FormatAllChat():
     embed.add_field(name=f"\nQ: {tmp}", value=f"A: {data[f'{tmp}']}", inline=False)
   return embed
     
-def SelectUrl(source):
-  max = random.choice(jFile.setting.get(source)) + "_max"
-  return jFile.setting.get(source) + str(random.randint(1,int(jFile.setting.get(max))))
+def SelectUrl():
+  source = random.choice(jFile.setting.get('PicSource'))
+  return jFile.setting.get(source) + str(random.randint(1,int(jFile.setting.get(source + "_max"))))
 
 def setup(bot):
     bot.add_cog(React(bot))
