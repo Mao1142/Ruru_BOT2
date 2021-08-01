@@ -29,6 +29,18 @@ async def reload(ctx,extension): #reload function
 	bot.reload_extension(f'cmds.{extension}')
 	await ctx.send(f'Reloaded {extension} done.')
 
+for Filename in os.listdir('./cmds'):
+	if Filename.endswith('.py'):
+ 		bot.load_extension(f'cmds.{Filename[:-3]}')
+
+if  __name__ == "__main__":
+  keep_alive.keep_alive()
+  bot.run(jFile.secure.get('Token'))
+  bot.remove_command('help')
+
+
+
+
 '''
 @bot.command()
 async def help(ctx):
@@ -54,18 +66,4 @@ async def help(ctx):
 
   await ctx.send(embed=embed)
 '''
-
-for Filename in os.listdir('./cmds'):
-	if Filename.endswith('.py'):
- 		bot.load_extension(f'cmds.{Filename[:-3]}')
-
-if  __name__ == "__main__":
-  keep_alive.keep_alive()
-  bot.run(jFile.secure.get('Token'))
-  bot.remove_command('help')
-
-
-
-
-
 
