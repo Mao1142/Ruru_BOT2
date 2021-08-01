@@ -34,7 +34,7 @@ class React(Cog_Extension):
     
     @commands.command()
     async def speak(self,ctx,msg):
-      self.channel = self.bot.get_channel(int(jFile.setting.get('DragonPort_Ch')))
+      self.channel = self.bot.get_channel(int(jFile.secure.get('DragonPort_Ch')))
       await self.channel.send(f'{msg}')
 
 

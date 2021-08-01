@@ -13,13 +13,13 @@ class Event(Cog_Extension):
     @commands.Cog.listener()
     async def on_member_join(self,member):
 	    print(f'{member} join')
-	    channel = self.bot.get_all_channels(int(jFile.setting.get('DragonPort_Ch')))
+	    channel = self.bot.get_all_channels(int(jFile.secure.get('DragonPort_Ch')))
 	    await channel.send(f"{member} join,{jFile.setting.get('konruru')}")
 
     @commands.Cog.listener()
     async def on_member_remove(self,member):
 	    print(f'{member} leave')
-	    channel = self.ot.get_all_channels(int(jFile.setting.get('DragonPort_Ch')))
+	    channel = self.ot.get_all_channels(int(jFile.secure.get('DragonPort_Ch')))
 	    await channel.send(f"{member} leave,{jFile.setting.get('otsururu')}")
 
     @commands.Cog.listener()
