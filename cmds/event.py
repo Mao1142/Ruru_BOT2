@@ -4,7 +4,7 @@ from core.classes import Cog_Extension
 import random
 import json
 
-from core.jsonctrl import jFile
+from cmds.jsonctrl import jFile
 
 
 class Event(Cog_Extension):
@@ -36,6 +36,9 @@ class Event(Cog_Extension):
           elif msg.content ==   "<:GS_Ganyu2:803303747983900682>" or msg.content == "<:GI_Keqing1:790752573832953937>":
             await msg.channel.send(jFile.setting.get('otsururu'))
             await msg.channel.send(jFile.setting.get('Ruru_sleep')) 
+          elif selpost(msg.content):
+            await msg.channel.send(jFile.get('post',msg.content))
+            await msg.delete()
           #normal chat 
           else :
             data = jFile.chat.getAll()
@@ -43,6 +46,15 @@ class Event(Cog_Extension):
               if msg.content == temp :
                 await msg.channel.send(data[f'{temp}'])
 
-
+def selpost(msg):
+  with open(f'json/post.json','r',encoding='utf8') as f:
+    data = json.load(f)
+  for tmp in data:
+    if msg == tmp:
+      f.close()
+      return True
+  f.close()
+  return False
+  
 def setup(bot):
      bot.add_cog(Event(bot))

@@ -3,7 +3,7 @@ from discord.ext import commands
 import os
 import keep_alive
 import json
-from core.jsonctrl import jFile
+from cmds.jsonctrl import jFile
 
 bot = commands.Bot(command_prefix='/')
 
@@ -32,6 +32,7 @@ async def reload(ctx,extension): #reload function
 for Filename in os.listdir('./cmds'):
 	if Filename.endswith('.py'):
  		bot.load_extension(f'cmds.{Filename[:-3]}')
+
 
 if  __name__ == "__main__":
   keep_alive.keep_alive()

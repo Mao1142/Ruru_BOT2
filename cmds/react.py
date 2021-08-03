@@ -3,9 +3,9 @@ from discord.ext import commands
 from core.classes import Cog_Extension
 import random
 import json
-from core.jsonctrl import jFile
-import requests
-from bs4 import BeautifulSoup
+from cmds.jsonctrl import jFile
+from cmds.crawler import crawler
+
 
 class React(Cog_Extension):
 
@@ -71,22 +71,26 @@ class React(Cog_Extension):
     async def listchat(self,ctx):
       await ctx.send(embed = FormatAllChat())
 
+#Post相關
+    @commands.command()
+    async def addpost(self,ctx,name,msg):
+      jFile.post.set(name,msg) 
+      await ctx.send(f'增加 關鍵字:{name} , 回應:{msg}')
+    
+    @commands.command()
+    async def delpost(self,ctx,name):
+      jFile.post.delete(name) 
+      await ctx.send(f'刪除 關鍵字:{name}')
+
+#其他功能
     @commands.command()
     async def advice(self,ctx):
 	    await ctx.send(jFile.setting.get('advice_table'))
       
     @commands.command()
     async def test(self,ctx):
-      url = SelectUrl()
-      print(url)
-      resp = requests.get(url)  
-      #print(resp) #<Response [200]> 請求成功回200，請求失敗回404
-      #透過BeautiFul整理且用html.parser解析
-      soup = BeautifulSoup(resp.text, 'html.parser')
-      result = soup.find("section",id = "content")
-      picurl = result.select_one("a").get("href")
-      await ctx.send(picurl)
-
+      url = crawler.getDan('https://danbooru.donmai.us/posts/4676621')
+      #await ctx.send(url)
 
 #綜合
 def FormatAllChat():

@@ -3,7 +3,7 @@ from discord.ext import commands
 from core.classes import Cog_Extension
 import json,asyncio,datetime
 import random 
-from core.jsonctrl import jFile
+from cmds.jsonctrl import jFile
 
 
 
