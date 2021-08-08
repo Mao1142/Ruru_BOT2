@@ -46,6 +46,16 @@ class Event(Cog_Extension):
               if msg.content == temp :
                 await msg.channel.send(data[f'{temp}'])
 
+    @commands.Cog.listener()
+    async def on_command_error(self,ctx,error):  
+      if isinstance(error,commands.errors.CommandNotFound):
+        await ctx.send('るる沒有這種指令哦')
+      elif isinstance(error,commands.errors.MissingRequiredAr):
+        await ctx.send('這個指令需要給參數哦')
+      else:
+        await ctx.send('指令錯了哦')
+
+
 def selpost(msg):
   with open(f'json/post.json','r',encoding='utf8') as f:
     data = json.load(f)

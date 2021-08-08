@@ -18,23 +18,23 @@ class React(Cog_Extension):
 	    await ctx.send(SelectUrl('sankaku'))
 
     @commands.command()
-    async def yan(self,ctx):
-	    await ctx.send(SelectUrl('yande'))
+    async def yan(self,ctx,tag = ""):
+	    await ctx.send(crawler.getYan(tag))
 
     @commands.command()
-    async def gel(self,ctx):
-	    await ctx.send(SelectUrl('gelbooru'))
+    async def gel(self,ctx,tag = "all"):
+      await ctx.send(crawler.getGel(tag))
 
     @commands.command()
-    async def dan(self,ctx):
-	    await ctx.send(SelectUrl('danbooru'))
+    async def dan(self,ctx,tag = ""):
+	    await ctx.send(crawler.getDan(tag))
     
     @commands.command()
     async def konruru(self,ctx):
 	    await ctx.send('空嚕嚕')
     
     @commands.command()
-    async def speak(self,ctx,msg):
+    async def speak(self,ctx,*,msg):
       self.channel = self.bot.get_channel(int(jFile.secure.get('DragonPort_Ch')))
       await self.channel.send(f'{msg}')
 
@@ -88,9 +88,9 @@ class React(Cog_Extension):
 	    await ctx.send(jFile.setting.get('advice_table'))
       
     @commands.command()
-    async def test(self,ctx):
-      url = crawler.getDan('https://danbooru.donmai.us/posts/4676621')
-      #await ctx.send(url)
+    async def test(self,ctx,tag='all'):
+      url = crawler.getGel(tag)
+      await ctx.send(f'{url}')
 
 #綜合
 def FormatAllChat():
@@ -100,8 +100,9 @@ def FormatAllChat():
     embed.add_field(name=f"\nQ: {tmp}", value=f"A: {data[f'{tmp}']}", inline=False)
   return embed
     
-def SelectUrl():
-  source = random.choice(jFile.setting.get('PicSource'))
+def SelectUrl(source = ''):
+  if source == '':
+    source = random.choice(jFile.setting.get('PicSource'))
   return jFile.setting.get(source) + str(random.randint(1,int(jFile.setting.get(source + "_max"))))
 
 def setup(bot):

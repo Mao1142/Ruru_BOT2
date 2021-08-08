@@ -33,14 +33,10 @@ for Filename in os.listdir('./cmds'):
 	if Filename.endswith('.py'):
  		bot.load_extension(f'cmds.{Filename[:-3]}')
 
-
 if  __name__ == "__main__":
+  bot.remove_command('help')
   keep_alive.keep_alive()
   bot.run(jFile.secure.get('Token'))
-  bot.remove_command('help')
-
-
-
 
 '''
 @bot.command()
@@ -60,11 +56,12 @@ async def help(ctx):
   embed.add_field(name="/pic", value="隨機從以上圖源發一張圖", inline=False)
 
   embed.add_field(name="Chat", value="對話設定", inline=False)
-  embed.add_field(name="/addchat", value="增加對話 /addchat **Key** **react**", inline=False)
+  embed.add_field(name="/addchat", value="增加對話 /addchat **Key** **react**",   inline=False)
   embed.add_field(name="/editchat", value="編輯已存在對話 /editchat **Key** **react**", inline=False)
   embed.add_field(name="/delchat", value="刪除對話 /delchat **Key**", inline=False)
   embed.add_field(name="/listchat", value="列出已儲存的對話清單", inline=False)
 
   await ctx.send(embed=embed)
+
 '''
 
